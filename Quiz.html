@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" 
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+    <style>
+        img{
+            padding: 5px;
+            width: 300px;
+            height: 200px;
+        }
+        .box{
+            background-color: #ddd;
+            width: 400px;
+            height: 100px;
+            border-radius: 10px;
+            border: 1px solid #000;
+        }
+        #caixa{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz Perguntas</h1>
+    <form>
+        <label for="q1">Quem Descobriu o Brasil?</label>
+        <input type="text" name="q1" id="q1">
+        <br>
+        <br>
+        <label for="q2">Qual dos itens a seguir não e uma linguagem de programação:</label>
+        <br>
+        <input type="radio" value="1" name="q2"> html
+        <br>
+        <input type="radio" value="2" name="q2"> python
+        <br>
+        <input type="radio" value="3" name="q2"> C#
+        <br>
+        <input type="radio" value="4" name="q2"> C++
+        <br>
+        <input type="radio" value="5" name="q2"> Java
+        <br>
+        <br>
+        <label for="q3">Qual o Resultado do exercicio abaixo?</label>
+        <br>
+        <img src="./img/tales_img_ex.jpg">
+        <br>
+        <input type="radio" value="1" name="q3"> 1,45
+        <br>
+        <input type="radio" value="2" name="q3"> 1,25
+        <br>
+        <input type="radio" value="3" name="q3"> 2,25
+        <br>
+        <input type="radio" value="4" name="q3"> 1,15
+        <br>
+        <input type="radio" value="5" name="q3"> 2,35
+        <br>
+        <br>
+        <label for="q3">Qual o Resultado do exercicio abaixo?</label>
+        <br>
+        <img src="./img/tales_img_ex2.webp">
+        <br>
+        <input type="radio" value="1" name="q4"> 35m e 56m
+        <br>
+        <input type="radio" value="2" name="q4"> 25m e 40m
+        <br>
+        <input type="radio" value="3" name="q4"> 35m e 70m
+        <br>
+        <input type="radio" value="3" name="q4"> 56m e 70m
+        <br>
+        <input type="radio" value="3" name="q4"> 56m e 84m
+        <br>
+        <br>
+        <label for="q5">Como se Escreve "Eu gostaria de um copo de agua por favor" em ingles:</label>
+        <br>
+        <input type="text" name="q5" id="q5">
+        <br>
+        <br>
+        <div class="box" id="caixa"> 
+            <h1 id="msg"></h1>
+        </div>
+        <input type="button" value="Enviar" id="btn_enviar">
+    </form>
+    <script>
+        $('#btn_enviar').click(()=>{
+            // $('#caixa').css('display','flex')
+            var Q1 = $('#q1').val()
+            var Q2 = $("input[name='q2']:checked").val()
+            var Q3 = $("input[name='q3']:checked").val()
+            var Q4 = $("input[name='q4']:checked").val()
+            var Q5 = $("#q5").val()
+
+            if(Q1 == "" || Q2 == undefined || Q3 == undefined || Q4 == undefined || Q5 == ""){
+                alert("Preencha todos os campos")
+            }
+            else{
+                $('#caixa').css('display','flex')
+                var questoes_certas = 0;
+
+                if(Q1 == "Pedro Alvares Cabral" || Q1 == "pedro alvares cabral"){
+                    questoes_certas += 1;
+                }
+    
+                if(Q2 == 1){
+                    questoes_certas += 1;
+                    // alert('Questão correta')
+                }
+                if(Q3 == 2){
+                    questoes_certas += 1;
+                }
+                if(Q4 == 1){
+                    questoes_certas += 1;
+                }
+                if(Q5 == "I would like a glass of water please" ||  Q5 == "i would like a glass of water please"){
+                    questoes_certas++;
+                }
+
+                if(questoes_certas == 5){
+                    $('#msg').text("Parabens Você acertou: "+questoes_certas+"/5")
+                    $('#msg').css('color','green')
+                }
+                else if(questoes_certas < 5 && questoes_certas >= 2){
+                    $('#msg').text("Bom Você acertou: "+questoes_certas+"/5")
+                    $('#msg').css('color','blue')
+                }
+                else{
+                    $('#msg').text("Voce foi pessimo: "+questoes_certas+"/5")
+                    $('#msg').css('color','#f00')
+                }
+            }
+        })
+        
+    </script>
+</body>
+</html>
